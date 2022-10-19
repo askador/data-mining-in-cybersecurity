@@ -68,8 +68,10 @@ def get_json_df(path: str, spark: SparkSession, schema=None) -> DataFrame:
     return dataframe.repartition(8)
 
 
-def clear_col(target_df: DataFrame,
-                 col_name:str,
-                 is_array: bool = False) -> DataFrame:
-    """Clears column, should be extended for arrays if needed"""
-    return target_df.withColumn('test', f.regexp_replace(col_name, ".*'(.*)'.*", r"$1"))
+def clear_col_nested(target_df: DataFrame,
+                     col_name: str,
+                     nested_col_name: str) -> DataFrame:
+    """Clears nested column, should be extended for arrays if needed"""
+    return target_df.withColumn(col_name, f.col(col_name)
+                                .withField(nested_col_name,
+                                           f.regexp_replace(f'{col_name}.{nested_col_name}', ".*'(.*)'.*", r"$1")))
