@@ -45,28 +45,43 @@ def prepare_business_df(spark_session: SparkSession) -> DataFrame:
                                    .otherwise(f.col('categories')))
                        .withColumn('categories', f.split('categories', ', '))
 
-                       .withColumn('BusinessParking',
-                                   f.lower(f.col('attributes.BusinessParking')))
-                       .withColumn('Ambience',
-                                   f.lower(f.col('attributes.Ambience')))
-                       .withColumn('GoodForMeal',
-                                   f.lower(f.col('attributes.GoodForMeal')))
+                       .withColumn('attributes',
+                                   f.col('attributes')
+                                   .withField('BusinessParking',
+                                              f.lower(f.col('attributes.BusinessParking'))))
+                       .withColumn('attributes',
+                                   f.col('attributes')
+                                   .withField('Ambience',
+                                              f.lower(f.col('attributes.Ambience'))))
+                       .withColumn('attributes',
+                                   f.col('attributes')
+                                   .withField('GoodForMeal',
+                                              f.lower(f.col('attributes.GoodForMeal'))
+                                              ))
 
-                       .withColumn('BusinessParking',
-                                   f.to_json(f.from_json(
-                                       f.col('BusinessParking'),
-                                       business_parking_json_schema,
-                                       {"mode": "PERMISSIVE"})))
-                       .withColumn('Ambience',
-                                   f.to_json(f.from_json(
-                                       f.col('Ambience'),
-                                       ambience_json_schema,
-                                       {"mode": "PERMISSIVE"})))
-                       .withColumn('GoodForMeal',
-                                   f.to_json(f.from_json(
-                                       f.col('GoodForMeal'),
-                                       good_for_meal_json_schema,
-                                       {"mode": "PERMISSIVE"})))
+                       .withColumn('attributes',
+                                   f.col('attributes')
+                                   .withField('BusinessParking',
+                                              f.to_json(f.from_json(
+                                                  f.col('attributes.BusinessParking'),
+                                                  business_parking_json_schema,
+                                                  {"mode": "PERMISSIVE"}))))
+
+                       .withColumn('attributes',
+                                   f.col('attributes')
+                                   .withField('Ambience',
+                                              f.to_json(f.from_json(
+                                                  f.col('attributes.Ambience'),
+                                                  ambience_json_schema,
+                                                  {"mode": "PERMISSIVE"}))))
+
+                       .withColumn('attributes',
+                                   f.col('attributes')
+                                   .withField('GoodForMeal',
+                                              f.to_json(f.from_json(
+                                                  f.col('attributes.GoodForMeal'),
+                                                  good_for_meal_json_schema,
+                                                  {"mode": "PERMISSIVE"}))))
                        )
     result = clear_col_nested(raw_business_df, 'attributes', 'WiFi')
     return result
