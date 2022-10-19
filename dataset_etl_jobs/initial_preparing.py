@@ -3,7 +3,7 @@ from typing import Tuple
 
 from pyspark.sql import DataFrame, SparkSession, functions as f, types as t
 
-from spark_setup.spark_setup import get_spark_session, get_json_df, write_dataframe_parquet, clear_col
+from spark_setup.spark_setup import get_spark_session, get_json_df, write_dataframe_parquet, clear_col_nested
 from spark_setup.schemas import BUSINESS_SCHEMA, USER_SCHEMA, REVIEW_SCHEMA
 from spark_setup.schemas import TIP_SCHEMA, CHECKIN_SCHEMA
 
@@ -83,7 +83,7 @@ def prepare_business_df(spark_session: SparkSession) -> DataFrame:
                                                   good_for_meal_json_schema,
                                                   {"mode": "PERMISSIVE"}))))
                        )
-    result = clear_col(raw_business_df, 'attributes.WiFi')
+    result = clear_col_nested(raw_business_df, 'attributes', 'WiFi')
     return result
 
 
