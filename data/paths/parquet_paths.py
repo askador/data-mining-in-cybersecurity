@@ -1,14 +1,16 @@
 """This module contains paths constants for parquet files"""
+from pathlib import Path
 
-BASE_DATA_PATH = '../data/yelp_academic_dataset_'
+CWD = Path.cwd()
+BASE_DATA_PATH = 'data/yelp_academic_dataset_'
 ENDING = '_short'
 
-BUSINESS = f'{BASE_DATA_PATH}business{ENDING}'
+BUSINESS = CWD.joinpath(f'{BASE_DATA_PATH}business{ENDING}')
 
-CHECKIN = f'{BASE_DATA_PATH}checkin{ENDING}'
+CHECKIN = CWD.joinpath(f'{BASE_DATA_PATH}checkin{ENDING}')
 
-REVIEW = f'{BASE_DATA_PATH}review{ENDING}'
+REVIEW = CWD.joinpath(f'{BASE_DATA_PATH}review{ENDING}')
 
-TIP = f'{BASE_DATA_PATH}tip{ENDING}'
+TIP = CWD.joinpath(f'{BASE_DATA_PATH}tip{ENDING}')
 
-USER = f'{BASE_DATA_PATH}user{ENDING}'
+USER = CWD.joinpath(f'{BASE_DATA_PATH}user{ENDING}')
