@@ -75,7 +75,7 @@ REVIEW_SCHEMA = t.StructType([
     t.StructField('review_id', t.StringType()),
     t.StructField('user_id', t.StringType()),
     t.StructField('business_id', t.StringType()),
-    t.StructField('stars', t.IntegerType()),
+    t.StructField('stars', t.FloatType()),
     t.StructField('date', t.DateType()),
     t.StructField('text', t.StringType()),
     t.StructField('useful', t.IntegerType()),

@@ -1,13 +1,11 @@
 """This module contains transformations from json to csv"""
-from typing import Tuple
-
 from pyspark.sql import DataFrame, SparkSession, functions as f, types as t
 
 from spark_setup.spark_setup import get_spark_session, get_json_df, write_dataframe_parquet, clear_col_nested
 from spark_setup.schemas import BUSINESS_SCHEMA, USER_SCHEMA, REVIEW_SCHEMA
 from spark_setup.schemas import TIP_SCHEMA, CHECKIN_SCHEMA
 
-from data.paths.parquet_paths import BUSINESS, USER, REVIEW, TIP, CHECKIN
+from data.paths.spark_parquet_paths import BUSINESS, USER, REVIEW, TIP, CHECKIN
 
 
 def create_type_schema(parsed_fields: list[str], spark_type) -> t.StructType:
