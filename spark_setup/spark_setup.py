@@ -68,6 +68,11 @@ def get_json_df(path: str, spark: SparkSession, schema=None) -> DataFrame:
     return dataframe.repartition(8)
 
 
+def get_parquet_df(path: str,
+                   spark: SparkSession) -> DataFrame:
+    return spark.read.parquet(path)
+
+
 def clear_col_nested(target_df: DataFrame,
                      col_name: str,
                      nested_col_name: str) -> DataFrame:
