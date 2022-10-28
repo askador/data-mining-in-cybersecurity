@@ -14,3 +14,9 @@ REVIEW = CWD.joinpath(f'{BASE_DATA_PATH}review{ENDING}')
 TIP = CWD.joinpath(f'{BASE_DATA_PATH}tip{ENDING}')
 
 USER = CWD.joinpath(f'{BASE_DATA_PATH}user{ENDING}')
+
+FRIENDS_VISITORS = CWD.joinpath(f'data/friends_visitors')
+
+WIFI_BUSINESSES = CWD.joinpath(f'data/wifi_businesses')
+
+COUNTED_HOURS_BUSINESS = CWD.joinpath(f'data/counted_hours_business')
