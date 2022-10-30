@@ -16,7 +16,12 @@ def prepare_business_df(spark_session: SparkSession) -> DataFrame:
                            spark_session)
             .select('business_id',
                     'name',
-                    'attributes.WiFi'))
+                    'attributes.WiFi',
+                    'city',
+                    'state',
+                    'latitude',
+                    'longitude',
+                    ))
 
 
 def mark_free_wifi(cleaned_wifi_df: DataFrame) -> DataFrame:
@@ -29,6 +34,10 @@ def mark_free_wifi(cleaned_wifi_df: DataFrame) -> DataFrame:
     return filtered_available_wifi.select(
         'business_id',
         'name',
+        'city',
+        'state',
+        'latitude',
+        'longitude',
         (f.col('WiFi') == 'free').alias('free_wifi')
     )
 
