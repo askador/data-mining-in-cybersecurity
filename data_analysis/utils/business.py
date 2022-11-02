@@ -18,4 +18,3 @@ def prepare_business_df(business_df: pd.DataFrame):
 def save_business_df_json(business_df: pd.DataFrame):
     path = Path.cwd().joinpath('..', 'json-data', 'business.json').resolve()
     business_df.to_json(path_or_buf=path, orient="records", index=True)
-    business_df.to_json(path_or_buf=path, orient="split")
