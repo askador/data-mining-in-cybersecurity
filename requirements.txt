@@ -12,5 +12,5 @@ networkx==2.8.7
 six==1.16.0
 scipy==1.9.3
 pyvis==0.3.0
-cmmunity==1.0.0b1
+community==1.0.0b1
 python-louvain==0.16
