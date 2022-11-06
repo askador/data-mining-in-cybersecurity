@@ -13,5 +13,6 @@ def append_nested_columns(dataframe: pd.DataFrame, col_name: str) -> pd.DataFram
         dataframe[col_name].values.tolist())], axis=1)  # type: ignore
     return dataframe
 
-def save_df_to_json(df: pd.DataFrame, path: Path | str):
+def save_df_json(df: pd.DataFrame, path: Path | str):
     df.to_json(path_or_buf=path, orient="records", index=True)
+    
