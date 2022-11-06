@@ -22,3 +22,5 @@ WIFI_BUSINESSES = CWD.joinpath('data/wifi_businesses')
 COUNTED_HOURS_BUSINESS = CWD.joinpath('data/counted_hours_business')
 
 LOWEST_RATINGS = CWD.joinpath('data/lowest_ratings')
+
+SUSPICIOUS_USERS = CWD.joinpath('data/suspicious_users_statistics')
